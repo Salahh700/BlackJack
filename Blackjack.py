@@ -1,133 +1,127 @@
 import random
-print("Bienvenue sur le BlackJack tah les fous ")
-sale=0
-mal=False
-Blackos1=0
-Blackos2=0
-StopOrNot2=False
-StopOrNot1=False
-testrandom2=0
-testrandom1=0
-stopGame=False
-MiseGagnant=0
-MisePlayer1=0
-MisePlayer2=0
-choix1=0
-choix2=0
-isStop = False
-Choix_stop=0
-ContreUno=True
+print("Bienvenue sur le BlackJack de l'avenir ")
+play_or_not=0
+start_game=False
+compteur_un=0
+compteur_deux=0
+stop_or_not1=False
+stop_or_not2=False
+test_random2=0
+test_random1=0
+stop_game=False
+mise_gagnant=0
+mise_player1=0
+mise_player2=0
+choice_1=0
+choice_2=0
+is_stop = False
+choice_stop=0
+final=False
+is_stop2=False
 
-while mal !=True:
-    sale=str(input("Êtes vous prêts à jouer, oui ou non "))
-    if sale == "non":
+while start_game !=True:
+    play_or_not=str(input("Êtes vous prêts à jouer, oui ou non "))
+    if play_or_not == "non" or play_or_not=="NON":
         print("Revenez lorsque vous voulez jouer !")
     else:
         print("C'est parti !")
-        mal=True
-NamePlayer1=input("Joueur 1 quel est ton nom ? ")
-NamePlayer2=input("Joueur 2 quel est ton nom ? ")
-print(f"Carré {NamePlayer1} et {NamePlayer2} commençons le jeu")
+        start_game=True
+name_player1=input("Joueur 1 quel est ton nom ? ")
+name_player2=input("Joueur 2 quel est ton nom ? ")
+print(f"Parfait {name_player1} et {name_player2} commençons le jeu")
 
 
 
-while stopGame !=True:
-    MisePlayer1 = int(input(f"{NamePlayer1} De combien est ta mise?"))
-    print(MisePlayer1)
-    MisePlayer2 = int(input(f"{NamePlayer2} De combien est ta mise?"))
-    print(f"{MisePlayer2}")
+while stop_game !=True:
+    mise_player1 = int(input(f"{name_player1} De combien est ta mise? "))
+    print(mise_player1)
+    mise_player2 = int(input(f"{name_player2} De combien est ta mise? "))
+    print(f"{mise_player2}")
     print("Nous allons maintenant tirer les cartes")
 
 
-    while StopOrNot1==False :
-        if Blackos1<=21:
-            print("Tiens ça")
-            testrandom1=random.randint(1,10)
-            print(f'La carte tirée est {testrandom1}')
-            Blackos1 = Blackos1 + testrandom1
-            print(Blackos1)
-            choix1=input(f'{NamePlayer1} Veux tu t\'arrêter ? ')
-            if choix1=="Oui" or choix1=="OUI" or choix1=="oui" or choix1=="We" or choix1=="we":
-                StopOrNot1=True
-                isStop=True
-            print(Blackos1)
-        elif Blackos1>21:
-            ContreUno=True
-            StopOrNot1=True
-            isStop=False
-            print("Tu as dépassé t'as perdu ")
-
-    if isStop==True:
-        while StopOrNot2==False :
-            if Blackos2<21:
-                print("Tiens ça ")
-                testrandom2=random.randint(1, 10)
-                print(f"la carte tirée est {testrandom2}")
-                Blackos2 = Blackos2 + testrandom2
-                print(Blackos2)
-                choix2=input(f'{NamePlayer2} Veux tu t\'arrêter ? ')
-                if choix2=="Oui" or choix2=="OUI" or choix2=="oui" or choix2=="We" or choix2=="we":
-                    StopOrNot2=True
-                    print(Blackos2)
-            elif Blackos2>21 :
-                ContreUno=True
-                StopOrNot2=True
-                print ("gros con t'as dépassé t'as perdu ")
+    while stop_or_not1==False :
+        if compteur_un <= 21:
+            print("Piochons")
+            test_random1=random.randint(1,10)
+            print(f'La carte tirée est {test_random1}')
+            compteur_un = compteur_un + test_random1
+            print(compteur_un)
+            choice_1=input(f'{name_player1} Veux tu t\'arrêter ? ')
+            if choice_1=="Oui" or choice_1=="OUI" or choice_1=="oui" or choice_1=="We" or choice_1=="we":
+                stop_or_not1=True
+                is_stop=True
+            print(compteur_un)
+        elif compteur_un>21:
+            final=True
+            stop_or_not1=True
+            is_stop=False
+            print("Tu as dépassé 21, tu as donc perdu ")
 
 
+    if is_stop==True:
+        print(f'Au tour de {name_player2} !')
+        while stop_or_not2==False :
+            if compteur_deux<21:
+                print("Piochons ")
+                test_random2=random.randint(1, 10)
+                print(f"la carte tirée est {test_random2} ")
+                compteur_deux = compteur_deux + test_random2
+                print(compteur_deux)
+                choice_2=input(f'{name_player2} Veux tu t\'arrêter ? ')
+                if choice_2=="Oui" or choice_2=="OUI" or choice_2=="oui" or choice_2=="We" or choice_2=="we":
+                    stop_or_not2=True
+                    print(compteur_deux)
+            elif compteur_deux>21 :
+                final=True
+                stop_or_not2=True
+                print ("Tu as dépassé 21, tu as donc perdu ")
 
 
-    while ContreUno==True:
-        if Blackos1>21 :
-            MiseGagnant = MisePlayer1 + MisePlayer2
-            print(f'{NamePlayer2}tu as gagné {MiseGagnant} car l\'autre con a dépassé')
-            MisePlayer1=0
-        elif Blackos2>21:
-            MiseGagnant = MisePlayer1 + MisePlayer2
-            print(f'{NamePlayer1}tu as gagné {MiseGagnant} car l\'autre con a dépassé')
-            MisePlayer2=0
-        ContreUno=False
-    ContreUno=True
+    while final==True:
+        if compteur_un>21 :
+            mise_gagnant = mise_player1 + mise_player2
+            print(f'{name_player2} tu as gagné {mise_gagnant} car l\'autre joueur a dépassé')
+            mise_player1=0
+        elif compteur_deux>21:
+            mise_gagnant = mise_player1 + mise_player2
+            print(f'{name_player1}tu as gagné {mise_gagnant} car l\'autre joueur a dépassé')
+            mise_player2=0
+        final=False
+        is_stop2=True
 
 
 
-    while ContreUno==False :
-        if Blackos1<Blackos2 :
-            MiseGagnant=MisePlayer1+MisePlayer2
-            print(f'{NamePlayer2}tu as gagné {MiseGagnant}')
-            MisePlayer1=0
+    while final==False and is_stop2==False:
+        if compteur_un<compteur_deux :
+            mise_gagnant=mise_player1+mise_player2
+            print(f'{name_player2}tu as gagné {mise_gagnant}')
+            mise_player1=0
 
-        elif Blackos2<Blackos1:
-            MiseGagnant = MisePlayer1 + MisePlayer2
-            print(f'{NamePlayer1}tu as gagné {MiseGagnant}')
-            MisePlayer2=0
-        ContreUno=True
-    ContreUno=True
+        elif compteur_deux<compteur_un:
+            mise_gagnant = mise_player1 + mise_player2
+            print(f'{name_player1}tu as gagné {mise_gagnant}')
+            mise_player2=0
+        final=True
+    final=True
 
-    Blackos1=0
-    Blackos2=0
-    choix1=0
-    choix2=0
-    StopOrNot1=False
-    StopOrNot2=False
-    isStop=False
-    Choix_stop=input("Voulez vous continuer ? ")
+    compteur_deux=0
+    compteur_un=0
+    choice_1=0
+    choice_2=0
+    stop_or_not1=False
+    stop_or_not2=False
+    is_stop=False
+    choice_stop=input("Voulez vous continuer ? ")
 
-    if Choix_stop=="oui" or Choix_stop=="OUI" or Choix_stop=="Oui"or Choix_stop=="We"or Choix_stop=="we" :
-        stopGame=False
+    if choice_stop=="oui" or choice_stop=="OUI" or choice_stop=="Oui" :
+        stop_game=False
         print("Letsgo")
-        Choix_stop=0
-        MisePlayer1=0
-        MisePlayer2=0
+        choice_stop=0
+        mise_player1=0
+        mise_player2=0
     else:
-        stopGame=True
-        print("Cassez vous alors !")
-
-
-
-
-
-
-
+        stop_game=True
+        print("A une prochaine !")
 
 
